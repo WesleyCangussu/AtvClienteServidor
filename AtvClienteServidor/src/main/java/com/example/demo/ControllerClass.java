@@ -111,4 +111,27 @@ public class ControllerClass {
 			return "CRUDBooks";
 		}
 		
+		// Método chamado pelo botão "Mostrar Livros" da página inicial 
+	    @GetMapping("/booksById")
+	    public String booksById(ModelMap model) {
+	        return "booksById";
+	    }
+	    
+	 // Método chamado pelo botão "Consultar Livro" da página "mostrarLivros"
+	    @GetMapping("/searchBook")
+	    public String searchBook(@RequestParam("codBook") String codBook, ModelMap model) {
+	        List<Book> listBook = new ArrayList<Book>();
+	        BookDao bookDao = new BookDao();
+	        int id = Integer.parseInt(codBook);
+	        listBook = bookDao.getBooks(id);
+	        if(listBook.size() == 0) {
+	            model.addAttribute("table", false);
+	            model.addAttribute("error", true);
+	        }else {
+	            model.addAttribute("table", true);
+	            model.addAttribute("error", false);
+	        }
+	        model.addAttribute("book",listBook);
+	        return "booksById";
+	    }
 }

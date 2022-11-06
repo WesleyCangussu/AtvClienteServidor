@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:action="@{searchBook}">
+        <input name="codBook" id="codBook" class="campo">
+        <input type="submit" value="Consultar Livro">
+    </form>
+
+    <table th:if="${table}">
+        <thead>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Categoria</th>
+            <th>Valor</th>
+        </thead>
+        <tbody>
+            <tr th:each="book : ${book}">
+                <td th:text="${book.getTitle()}"></td>
+                <td th:text="${book.getAuthor()}"></td>
+                <td th:text="${book.getCategory()}"></td>
+                <td th:text="${book.getValue()}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 th:if="${error}">Nenhum livro encontrado!</h2>
+</body>
+</html>
