@@ -37,7 +37,7 @@ public class ControllerClass {
 	
 	// Método chamado pelo botão "Consultar Livros" da página "listaLivrosPorCategoria"
 		@GetMapping("/listBooksByCategory")
-		public String LivrosPorCategoria(@RequestParam("categorias") String category, ModelMap model) {
+		public String LivrosPorCategoria(@RequestParam("categories") String category, ModelMap model) {
 			
 			model.addAttribute("category",categories);
 			List<Book> listBooks = new ArrayList<Book>();
@@ -58,6 +58,13 @@ public class ControllerClass {
 			
 			return "listaLivrosPorCategoria";
 		}
+		
+		// Método chamado pelo botão "CRUD Livros" da página inicial
+	    @GetMapping("/CRUDBooks")
+		    public String CRUDBooks(ModelMap model) {
+		        model.addAttribute("category",categories);
+		        return "CRUDBooks";
+		    }
 	
 		
 }

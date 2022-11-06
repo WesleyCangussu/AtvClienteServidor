@@ -9,7 +9,7 @@ public class ConnectionFactory {
 	public Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			return DriverManager.getConnection("jdbc:mysql://localhost/bdlivraria?useTimezone=true&serverTimezone=UTC","root", "root");
+			return DriverManager.getConnection("jdbc:mysql://localhost/bdlivraria?useTimezone=true&serverTimezone=UTC","root", "santos");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} catch (ClassNotFoundException e) {

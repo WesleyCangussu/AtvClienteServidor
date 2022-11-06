@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CRUD Livros</title>
+</head>
+<body>
+	<form th:action="modBook">
+        <label>IdLivro:</label>
+        <input name="codBook" id="codBook" class="campo"></br>
+        <label>Titulo:</label>
+        <input name="title" id="title" class="campo"></br>
+        <label>Autor:</label>
+        <input name="author" id="author" class="campo"></br>
+        <label>Valor:</label>
+        <input name="value" id="value" class="campo"></br>
+        <label>Categorias:</label>
+        <select name="categories" id="categories">
+            <option th:each="category : ${category}" th:value="${category.getCategory()}" th:text="${category.getCategory()}"></option>
+        </select></br>
+        <input type="submit" name="action" value="Insert Book">
+        <input type="submit" name="action" value="Update Book">
+        <input type="submit" name="action" value="Delete Book">
+
+    </form>
+</body>
+</html>

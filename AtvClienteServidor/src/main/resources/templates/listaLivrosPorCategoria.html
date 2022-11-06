@@ -8,7 +8,7 @@
 
 	<form th:action="@{listBooksByCategory}">
 	
-		<select name="categorias" id="categorias">
+		<select name="categories" id="categories">
 			<option th:each="category : ${category}" th:value="${category.getCategory()}" th:text="${category.getCategory()}"></option>	
 		</select>		
 		<input type="submit" value="Consultar Livros">

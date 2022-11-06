@@ -35,11 +35,11 @@ private Connection connection;
 			}
 	}
 	
-		public List<Book> getBooks(String categoria){
+		public List<Book> getBooks(String category){
 			try {
 				List<Book> books = new ArrayList<Book>();
 				PreparedStatement stmt = this.connection.prepareStatement("select * from tblivros where categoria=?");
-				stmt.setString(1, categoria);
+				stmt.setString(1, category);
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
 					Book book = new Book();
