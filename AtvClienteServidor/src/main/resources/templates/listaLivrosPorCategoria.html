@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Livros por Categoria</title>
+</head>
+<body>
+
+	<form th:action="@{listBooksByCategory}">
+	
+		<select name="categorias" id="categorias">
+			<option th:each="category : ${category}" th:value="${category.getCategory()}" th:text="${category.getCategory()}"></option>	
+		</select>		
+		<input type="submit" value="Consultar Livros">
+	</form>
+	
+	<form th:action="@{/}">
+		<input type="submit" value="Voltar">
+	</form>
+	
+	<table th:if="${table}">
+        <thead>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Categoria</th>
+            <th>Valor</th>
+        </thead>
+        <tbody>
+            <tr th:each="book : ${book}">
+                <td th:text="${book.getTitle()}"></td>
+                <td th:text="${book.getAuthor()}"></td>
+                <td th:text="${book.getCategory()}"></td>
+                <td th:text="${book.getValue()}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 th:if="${error}">Nenhum livro encontrado para a categoria selecionada!</h2>
+</body>
+</html>

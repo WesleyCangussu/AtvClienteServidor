@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import models.Category;
 
 import DBConnection.ConnectionFactory;
+import models.Category;
 
 public class CategoryDao {
 	private Connection connection;
