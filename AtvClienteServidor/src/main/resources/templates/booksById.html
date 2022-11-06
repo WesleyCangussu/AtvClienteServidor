@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Livros por Id</title>
 </head>
 <body>
 	<form th:action="@{searchBook}">
@@ -26,7 +26,10 @@
             </tr>
         </tbody>
     </table>
-
+	<form th:action="@{/}">
+		<input type="submit" value="Voltar">
+	</form>
     <h2 th:if="${error}">Nenhum livro encontrado!</h2>
+    
 </body>
 </html>

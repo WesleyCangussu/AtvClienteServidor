@@ -26,7 +26,7 @@ public class ControllerClass {
 			return "index";
 		}
 		
-	// Método chamado pelo botão "Buscar por Categoria" da página inicial
+	// Método chamado pelo botão "Livros por Categoria" da página inicial
 	@GetMapping("/booksByCategories")
 	public String booksByCategories(ModelMap model) {
 		
@@ -37,7 +37,7 @@ public class ControllerClass {
 	
 	// Método chamado pelo botão "Consultar Livros" da página "listaLivrosPorCategoria"
 		@GetMapping("/listBooksByCategory")
-		public String LivrosPorCategoria(@RequestParam("categories") String category, ModelMap model) {
+		public String listBooksByCategory(@RequestParam("categories") String category, ModelMap model) {
 			
 			model.addAttribute("category",categories);
 			List<Book> listBooks = new ArrayList<Book>();
@@ -65,7 +65,7 @@ public class ControllerClass {
 		        model.addAttribute("category",categories);
 		        return "CRUDBooks";
 		    }
-	 // Método chamado por algum dos botões "Inserir Livro","Editar Livro" ou "Excluir Livro" da página "gerLivros"
+	 // Método chamado por algum dos botões "Insert Book","Update Book" ou "Delete Book" da página "CRUDBooks"
 		@GetMapping("/modBook")
 		public String modBook(@RequestParam( value ="codBook", required = true) String codBook, 
 								@RequestParam(value ="title", required = true) String title, 
@@ -142,18 +142,22 @@ public class ControllerClass {
 			return "CRUDBooks";
 		}
 		
-		// Método chamado pelo botão "Mostrar Livros" da página inicial 
+		// Método chamado pelo botão "Livros por CodLivro" da página inicial 
 	    @GetMapping("/booksById")
 	    public String booksById(ModelMap model) {
 	        return "booksById";
 	    }
 	    
-	 // Método chamado pelo botão "Consultar Livro" da página "mostrarLivros"
+	 // Método chamado pelo botão "Consultar Livro" da página "booksById"
 	    @GetMapping("/searchBook")
 	    public String searchBook(@RequestParam("codBook") String codBook, ModelMap model) {
 	        List<Book> listBook = new ArrayList<Book>();
 	        BookDao bookDao = new BookDao();
-	        int id = Integer.parseInt(codBook);
+	        int id = 0;
+	        if(!codBook.isEmpty()) {
+	         id = Integer.parseInt(codBook);
+	        }
+	        
 	        listBook = bookDao.getBooks(id);
 	        if(listBook.size() == 0) {
 	            model.addAttribute("table", false);
