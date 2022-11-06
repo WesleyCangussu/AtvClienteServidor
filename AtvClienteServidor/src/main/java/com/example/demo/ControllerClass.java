@@ -76,8 +76,16 @@ public class ControllerClass {
 								ModelMap model) {
 			
 			BookDao bookDao = new BookDao();
-			int id = Integer.parseInt(codBook);
-			float val = Float.parseFloat(value);
+			int id = 0;
+			float val = 0;
+			
+			if(!value.isEmpty()) {
+				val = Float.parseFloat(value);
+			}
+			
+			if(!codBook.isEmpty()) {
+				id = Integer.parseInt(codBook);
+			}
 			
 			Book book = new Book();
 			book.setId(id);
@@ -88,20 +96,43 @@ public class ControllerClass {
 			
 			switch (action) {
 			case "Insert Book": {
-					
-				bookDao.insertBook(book);
-				model.addAttribute("category",categories);
+				
+				try {
+					bookDao.insertBook(book);
+					model.addAttribute("insertSuc",true);
+					model.addAttribute("category",categories);					
+				} catch (Exception e) {
+					model.addAttribute("insertError",true);
+					model.addAttribute("category",categories);	
+					return "CRUDBooks";
+				}
+				
 			}
 			break;
 			case "Update Book":{
-				bookDao.updateBooksById(book);
-				model.addAttribute("category",categories);
+				try {
+					bookDao.updateBooksById(book);
+					model.addAttribute("updateSuc",true);
+					model.addAttribute("category",categories);
+				} catch (Exception e) {
+					model.addAttribute("updateError",true);
+					model.addAttribute("category",categories);	
+					return "CRUDBooks";
+				}
+				
 			}
 			break;
 			case "Delete Book":{
-					
-				bookDao.deleteBooksById(book);
-				model.addAttribute("category",categories);
+				try {
+					bookDao.deleteBooksById(book);
+					model.addAttribute("deleteSuc",true);
+					model.addAttribute("category",categories);
+				} catch (Exception e) {
+					model.addAttribute("deleteError",true);
+					model.addAttribute("category",categories);	
+					return "CRUDBooks";
+				}
+				
 			}
 			break;
 			default:

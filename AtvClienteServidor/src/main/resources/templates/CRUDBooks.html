@@ -21,6 +21,15 @@
         <input type="submit" name="action" value="Insert Book">
         <input type="submit" name="action" value="Update Book">
         <input type="submit" name="action" value="Delete Book">
+        
+        <h2 th:if="${deleteSuc}">Livro deletado com sucesso!</h2>
+	    <h2 th:if="${deleteError}">Erro ao deletar livro, não foi possivel excluir o livro!</h2>
+	
+	    <h2 th:if="${insertSuc}">Livro cadastrado com sucesso!</h2>
+	    <h2 th:if="${insertError}">Erro ao cadastrar livro, cadastro não realizado!</h2>
+	
+	    <h2 th:if="${updateSuc}">As informações do livro foram Atualizadas!</h2>
+	    <h2 th:if="${updateError}">Erro ao atualizar as informções do livro, atualização não realizada!</h2>
 
     </form>
 </body>
