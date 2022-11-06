@@ -14,7 +14,7 @@ public class Book {
 	    public String getAuthor() {
 	        return author;
 	    }
-	    public void setAutor(String author) {
+	    public void setAuthor(String author) {
 	        this.author = author;
 	    }
 	    public String getCategory() {
@@ -32,7 +32,7 @@ public class Book {
 	    public float getValue() {
 	        return value;
 	    }
-	    public void setValor(float value) {
+	    public void setValue(float value) {
 	        this.value = value;
 	    }
 }
