@@ -65,6 +65,50 @@ public class ControllerClass {
 		        model.addAttribute("category",categories);
 		        return "CRUDBooks";
 		    }
-	
+	 // Método chamado por algum dos botões "Inserir Livro","Editar Livro" ou "Excluir Livro" da página "gerLivros"
+		@GetMapping("/modBook")
+		public String modBook(@RequestParam( value ="codBook", required = true) String codBook, 
+								@RequestParam(value ="title", required = true) String title, 
+								@RequestParam(value ="author", required = true) String author,
+								@RequestParam(value ="value", required = true) String value,
+								@RequestParam(value = "action", required = true) String action,
+								@RequestParam(value ="categories", required = true) String category,
+								ModelMap model) {
+			
+			BookDao bookDao = new BookDao();
+			int id = Integer.parseInt(codBook);
+			float val = Float.parseFloat(value);
+			
+			Book book = new Book();
+			book.setId(id);
+			book.setAuthor(author);
+			book.setCategory(category);
+			book.setTitle(title);
+			book.setValue(val);
+			
+			switch (action) {
+			case "Insert Book": {
+					
+				bookDao.insertBook(book);
+				model.addAttribute("category",categories);
+			}
+			break;
+			case "Update Book":{
+				bookDao.updateBooksById(book);
+				model.addAttribute("category",categories);
+			}
+			break;
+			case "Delete Book":{
+					
+				bookDao.deleteBooksById(book);
+				model.addAttribute("category",categories);
+			}
+			break;
+			default:
+				
+			}
+			
+			return "CRUDBooks";
+		}
 		
 }
